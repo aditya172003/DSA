@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label >enter number </label>
+    <input type="text"  onkeypress="func(event)" id="abhi"/>
+    <button id ="btn" onclick="fun()">click to check</button>
+    <br/>
+    <div>
+        <span id = "error"></span>
+    </div>  
+
+
+    <script>
+
+    function func(e)
+    {
+        let d = e.target.value;
+        
+        console.log(d);
+      
+        var reg = /^[-?0-9][0-9]*$/
+        
+
+        if(reg.test(d)||d.length==0) 
+        {
+            console.log("pass")
+        }
+        else{
+            e.preventDefault()
+            console.log("fail")
+
+        }
+            
+
+          if( !reg.test(d) && d.length!=0)
+            {
+                e.target.value=d.substr(0,d.length-1);
+            event.preventDefault();
+         
+            
+               
+               
+            }
+            
+          
+        
+        
+
+       
+            
+    }
+   const  fun = ()=>{
+        
+            let d = document.getElementById('abhi').value;
+
+            d= parseInt(d);
+
+            console.log(d);
+            confirm("did you do it ??????");
+
+            if(isNaN(d))
+            {   
+               
+                document.getElementById("error").innerHTML="please enter valid number ";
+            }
+            else{
+                console.log("a numebr ");
+                document.getElementById("error").innerHTML="congratulations you did it ";
+            }
+            
+        }
+       
+        
+    </script>
+</body>
+</html>
