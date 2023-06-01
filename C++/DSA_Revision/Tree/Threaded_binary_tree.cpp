@@ -293,6 +293,100 @@ class TBT
         root= delete_data(root,d);
     }
 
+
+
+    void delete_iter( int d)
+    {
+            Node*q = root;
+            Node *t= q;
+            while(q->data!=d)
+            {
+                t=q;
+                if(q->data <d)q=q->right;
+                else q=q->left;
+            }
+
+            Node * p =q;
+            while(q)
+            {
+                if(q->lflag&& q->rflag)
+                {
+                        if(t->right ==q)
+                        {
+                            t->right = q->right;
+                            t->rflag = q->rflag;
+                        }
+                        else
+                        {
+                            t->left = q->left;
+                            t->lflag = q->lflag;
+                        }
+                        delete q;
+                        q=NULL;
+
+                }
+                else if(q->right ==t )
+                {
+                    p=p->left;
+
+                    if(p->rflag)
+                    {
+                        p->right = q->right;
+                        q->rflag = p->rflag;
+                        t->left = p;
+
+                    }
+                    else
+                    {
+                        t->left = p;
+
+                    }
+                    delete q;
+                    q=NULL;
+                }
+                else if(q->lflag)
+                {
+                    p=p->right;
+
+                    if(p->lflag)
+                    {
+                        p->left = q->left;
+                        p->lflag = q->lflag;
+                        t->right = p;
+
+                    }
+                    else
+                    {
+                        t->right = p;
+
+                    }
+                    delete q;
+                    q=NULL;
+                }
+                else
+                {
+                    t=p;
+                    p=p->left;
+                    while(p->right!=q)
+                    {
+                        t=p;
+                        p=p->right;
+                    }
+
+                    q->data = p->data;
+                    q=p;
+                }
+
+            }
+    }
+
+
+
+
+
+
+
+
 };
 
 
@@ -338,7 +432,7 @@ int main()
                 int d;
                 cout<<"Enter the data to be deleted "<<endl;
                 cin>>d;
-                t1.delete_d(d);
+                t1.delete_iter(d);
                 break;
 
             }
