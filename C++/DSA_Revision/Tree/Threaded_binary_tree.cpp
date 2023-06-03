@@ -305,7 +305,6 @@ class TBT
                 if(q->data <d)q=q->right;
                 else q=q->left;
             }
-
             Node * p =q;
             while(q)
             {
